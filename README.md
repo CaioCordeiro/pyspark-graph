@@ -48,3 +48,16 @@ Once you're done, you may remove what was created by `up` with the following com
 ```bash
 docker-compose down # stops containers and removes containers, networks, volumes, and images created by `up`
 ```
+
+### Permission error
+
+If when stating the docker raises "Permission error" on the terminal, run:
+```bash
+sudo groupadd docker
+sudo usermod -aG docker ${USER}
+newgrp docker
+sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+sudo systemctl restart docker
+sudo chmod 666 /var/run/docker.sock
+```
+Dont worry if some of them raise some error, just execute all.
